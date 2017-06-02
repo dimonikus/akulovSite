@@ -1,0 +1,20 @@
+AddDefaultCharset UTF-8
+AddCharset utf-8 *
+
+#Options +FollowSymLinks
+#IndexIgnore */*
+#RewriteEngine on
+
+#RewriteBase / #my add
+
+RewriteEngine on
+
+#RewriteCond %{HTTP_HOST} ^www.pampik1113\.local$ [NC]
+#RewriteRule ^(.*)$ http://pampik1113.local/$1 [R=301,L]
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index.php
+RewriteRule . index.php
