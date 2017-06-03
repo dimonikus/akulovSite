@@ -1,54 +1,47 @@
 <?php
-
+use evgeniyrru\yii2slick\Slick;
+use yii\helpers\Html;
+use yii\web\JsExpression;
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
-//TODO https://github.com/DrMabuse23/yii2-slick
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
         <img src="/img/logo.png">
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <?php
+        // http://www.yiiframework.com/extension/yii2-slick
+        echo Slick::widget([
+            // HTML tag for container. Div is default.
+            'itemContainer' => 'div',
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+            // HTML attributes for widget container
+            'containerOptions' => ['class' => 'container'],
+
+            // Items for carousel. Empty array not allowed, exception will be throw, if empty
+            'items' => [
+                Html::img('http://akulov.kiev.ua/wedding/IMG_7161_sp.jpg', ['style' => 'width: 100%']),
+                Html::img('http://akulov.kiev.ua/wedding/site_IMG_0736.jpg', ['style' => 'width: 100%']),
+                Html::img('http://akulov.kiev.ua/wedding/IMG_2891_2.jpg', ['style' => 'width: 100%']),
+                Html::img('http://akulov.kiev.ua/wedding/site_MG_3188.jpg', ['style' => 'width: 100%']),
+                Html::img('http://akulov.kiev.ua/wedding/4.jpg', ['style' => 'width: 100%']),
+            ],
+
+            // HTML attribute for every carousel item
+            'itemOptions' => ['class' => 'cat-image'],
+
+            // settings for js plugin
+            // @see http://kenwheeler.github.io/slick/#settings
+            'clientOptions' => [
+                'autoplay' => true,
+                'dots'     => true,
+                // note, that for params passing function you should use JsExpression object
+                'onAfterChange' => new JsExpression('function() {console.log("The cat has shown")}'),
+            ],
+        ]);
+        ?>
     </div>
 
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
 </div>
