@@ -2,9 +2,12 @@
 
 namespace app\modules\admin\controllers;
 
+use yii\helpers\Url;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use app\modules\admin\models\LoginForm;
 
 /**
  * Default controller for the `admin` module
@@ -17,17 +20,6 @@ class DefaultController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout'],
-                'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -40,9 +32,28 @@ class DefaultController extends Controller
     public function actions()
     {
         $this->layout = '@app/views/layouts/admin';
-        if (\Yii::$app->user->isGuest) {
-            return $this->actionIndex();
+        if (\Yii::$app->user->isGuest && \Yii::$app->request->url != '/admin/login') {
+            $this->redirect(Url::toRoute(['/admin/login']));
         }
+    }
+
+    /**
+     * Login action.
+     *
+     * @return string
+     */
+    public function actionLogin()
+    {
+        if (!\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $model = new LoginForm();
+        if ($model->load(\Yii::$app->request->post()) && $model->login()) {
+            return $this->redirect(Url::toRoute(['/admin/index']));
+        }
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -63,6 +74,6 @@ class DefaultController extends Controller
     {
         \Yii::$app->user->logout();
 
-        return $this->$this->actionIndex();
+        return $this->redirect(Url::toRoute(['/admin/login']));
     }
 }

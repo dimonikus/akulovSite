@@ -31,7 +31,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\modules\admin\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -58,7 +58,10 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'admin/<action>' => 'admin/default/<action>',
+                'admin/<controllers>/<action>' => 'admin/<controllers>/<action>',
                 '<controllers>/<action>' => '<controllers>/<action>',
+//                '<module>/<action>' => '<module>/default/<action>',
             ],
         ],
     ],
