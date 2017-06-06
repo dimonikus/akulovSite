@@ -2,8 +2,11 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\Image;
 use yii\helpers\Url;
 use yii\filters\VerbFilter;
+use yii\helpers\VarDumper;
+use yii\web\UploadedFile;
 
 class ContentController extends \yii\web\Controller
 {
@@ -32,7 +35,15 @@ class ContentController extends \yii\web\Controller
 
     public function actionSlider()
     {
-        return $this->render('slider');
-    }
+        $model = new Image();
+        if (\Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->uploadImage('uploads/slider/')) {
+                echo json_encode(true);
+                \Yii::$app->end();
+            }
+        }
 
+        return $this->render('slider', compact('model'));
+    }
 }
