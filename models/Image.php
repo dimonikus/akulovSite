@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Html;
 use yii\helpers\VarDumper;
 use yii\web\UploadedFile;
 
@@ -62,5 +63,24 @@ class Image extends \yii\db\ActiveRecord
         }
 
         return false;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getSliderImages($imgTag = true)
+    {
+        $img = Image::find()->where(['url' => 'uploads/slider/'])->all();
+        $items = [];
+        if ($img) {
+            foreach ($img as $image) {
+                $items[] = $imgTag
+                    ? Html::img(DIRECTORY_SEPARATOR . $image->url . $image->name, ['style' => 'width: 100%'])
+                    : '/' . $image->url . $image->name
+                ;
+            }
+        }
+
+        return $items;
     }
 }

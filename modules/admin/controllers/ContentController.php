@@ -37,11 +37,16 @@ class ContentController extends \yii\web\Controller
     {
         $model = new Image();
         if (\Yii::$app->request->isPost) {
-            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            if ($model->uploadImage('uploads/slider/')) {
-                echo json_encode(true);
-                \Yii::$app->end();
+            $imageFiles = UploadedFile::getInstances($model, 'imageFile');
+            foreach ($imageFiles as $file) {
+                $model->imageFile = $file;
+                if ($model->uploadImage('uploads/slider/')) {
+                    echo json_encode(true);
+                }
             }
+            \Yii::$app->end();
+            $this->refresh();
+            $model = new Image();
         }
 
         return $this->render('slider', compact('model'));
