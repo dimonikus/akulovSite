@@ -2,11 +2,13 @@
 
 namespace app\controllers;
 
+use app\models\Image;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
+use app\modules\admin\models\LoginForm;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -60,7 +62,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $items = Image::getSliderImages();
+
+        return $this->render('index', compact('items'));
     }
 
     /**

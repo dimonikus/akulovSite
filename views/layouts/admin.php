@@ -27,8 +27,8 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My test',
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandLabel' => 'Admin Panel',
+        'brandUrl' => \yii\helpers\Url::to(['/admin/index']),
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
@@ -36,16 +36,24 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            [
+                'label' => 'Content',
+                'items' => [
+                    ['label' => 'slider', 'url' => ['/admin/content/slider']],
+//                    '<li class="divider"></li>',
+//                    '<li class="dropdown-header">Dropdown Header</li>',
+//                    ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
+                ],
+            ],
+//            ['label' => 'About', 'url' => ['/site/about']],
+//            ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-            ['label' => Yii::t('menu', 'Login'), 'url' => ['/admin/default/index']]
+            ['label' => Yii::t('menu', 'Login'), 'url' => ['/admin/default/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/admin/default/logout'], 'post')
                 . Html::submitButton(
-                    Yii::t('menu', 'Logout') . ' (' . Yii::$app->user->identity->username . ')',
+                    Yii::t('menu', 'Logout'),
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()

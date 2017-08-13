@@ -7,6 +7,6 @@
     </p>
     <p>
         You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
+        <code><?= \yii\helpers\VarDumper::dump(Yii::$app->user->identity, 10, true) ?></code>
     </p>
 </div>
