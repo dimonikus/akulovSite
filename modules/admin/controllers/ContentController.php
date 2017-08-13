@@ -51,4 +51,13 @@ class ContentController extends \yii\web\Controller
 
         return $this->render('slider', compact('model'));
     }
+
+    public function actionDelete()
+    {
+        if (\Yii::$app->request->isPost) {
+            echo json_encode(Image::deleteImage(\Yii::$app->request->post('id')));
+        }
+
+        \Yii::$app->end();
+    }
 }

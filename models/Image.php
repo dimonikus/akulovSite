@@ -53,6 +53,10 @@ class Image extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @param $url
+     * @return bool
+     */
     public function uploadImage($url)
     {
         $this->name = $this->imageFile->name;
@@ -65,10 +69,13 @@ class Image extends \yii\db\ActiveRecord
         return false;
     }
 
+
     /**
-     * @return array
+     * @param bool $imgTag
+     * @param bool $model
+     * @return array | Image model
      */
-    public static function getSliderImages($imgTag = true)
+    public static function getSliderImages($imgTag = true, $model = false)
     {
         $img = Image::find()->where(['url' => 'uploads/slider/'])->all();
         $items = [];
@@ -81,6 +88,18 @@ class Image extends \yii\db\ActiveRecord
             }
         }
 
-        return $items;
+        return $model ? $img : $items;
+    }
+
+    public static function deleteImage($id)
+    {
+        if ($img = Image::find()->where(['id' => $id])->one()) {
+            unlink (Yii::getAlias('@root') . '/' . $img->url . $img->name);
+            $img->delete();
+
+            return true;
+        }
+
+        return false;
     }
 }

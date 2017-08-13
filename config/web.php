@@ -1,5 +1,5 @@
 <?php
-
+Yii::setAlias('@root', realpath(dirname(__FILE__).'/../web/'));
 $params = require(__DIR__ . '/params.php');
 
 $config = [
