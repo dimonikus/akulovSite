@@ -7,6 +7,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'ru-RU',
+//    'language' => 'ua-UA',
     'timeZone' => 'Europe/Kiev',
     'defaultRoute' => 'site/index',
     'components' => [
