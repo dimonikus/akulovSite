@@ -3,6 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use app\models\Image;
+use app\models\TextPage;
 use yii\helpers\Url;
 use yii\filters\VerbFilter;
 use yii\helpers\VarDumper;
@@ -63,6 +64,16 @@ class ContentController extends \yii\web\Controller
 
     public function actionAbout()
     {
-        return $this->render('about');
+        if (!$model = TextPage::findOne(['page_name' => 'about'])) {
+            $model = new TextPage();
+            $model->page_name = 'about';
+        }
+        if (\Yii::$app->request->isPost && $model->load(\Yii::$app->request->post())) {
+            if ($model->save()) {
+                \Yii::$app->session->setFlash('success', 'Текстовая страница успешно сохранена');
+            }
+        }
+
+        return $this->render('about', compact('model'));
     }
 }
