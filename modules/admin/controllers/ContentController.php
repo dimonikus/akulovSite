@@ -60,4 +60,9 @@ class ContentController extends \yii\web\Controller
 
         \Yii::$app->end();
     }
+
+    public function actionAbout()
+    {
+        return $this->render('about');
+    }
 }
