@@ -10,8 +10,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        Страница находится в стадии разработки!
-    </p>
+    <div>
+        <?= $model->ru ?>
+    </div>
 
 </div>

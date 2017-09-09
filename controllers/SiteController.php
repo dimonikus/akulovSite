@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Image;
+use app\models\TextPage;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Html;
@@ -112,6 +113,11 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        if (!$model = TextPage::findOne(['page_name' => 'about'])) {
+            $model = new TextPage();
+            $model->ru = '<p>Страница находится в стадии разработки!</p>';
+        }
+
+        return $this->render('about', compact('model'));
     }
 }
