@@ -38,6 +38,14 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => Yii::t('menu', 'Home'), 'url' => ['/site/index']],
+            [
+                'label' => Yii::t('menu', 'Gallery'),
+                'items' => [
+                    ['label' => Yii::t('menu', 'Wedding'), 'url' => ['/gallery/wedding']],
+//                    '<li class="divider"></li>',
+//                    ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
+                ],
+            ],
             ['label' => Yii::t('menu', 'About'), 'url' => ['/site/about']],
             ['label' => Yii::t('menu', 'Contact'), 'url' => ['/site/contact']],
         ],
