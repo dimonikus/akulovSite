@@ -91,6 +91,11 @@ class Image extends \yii\db\ActiveRecord
         return $model ? $img : $items;
     }
 
+    public static function getGalleryImages($gallery = 'uploads/slider/')
+    {
+        return Image::find()->where(['url' => $gallery])->all();
+    }
+
     public static function deleteImage($id)
     {
         if ($img = Image::find()->where(['id' => $id])->one()) {
