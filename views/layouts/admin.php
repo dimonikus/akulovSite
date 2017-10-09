@@ -41,6 +41,7 @@ AppAsset::register($this);
                 'items' => [
                     ['label' => 'slider', 'url' => ['/admin/content/slider']],
                     ['label' => 'about', 'url' => ['/admin/content/about']],
+                    ['label' => 'wedding', 'url' => ['/admin/content/wedding']],
 //                    '<li class="divider"></li>',
 //                    '<li class="dropdown-header">Dropdown Header</li>',
 //                    ['label' => 'Level 1 - Dropdown B', 'url' => '#'],

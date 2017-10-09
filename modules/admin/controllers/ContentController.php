@@ -53,6 +53,25 @@ class ContentController extends \yii\web\Controller
         return $this->render('slider', compact('model'));
     }
 
+    public function actionWedding()
+    {
+        $model = new Image();
+        if (\Yii::$app->request->isPost) {
+            $imageFiles = UploadedFile::getInstances($model, 'imageFile');
+            foreach ($imageFiles as $file) {
+                $model->imageFile = $file;
+                if ($model->uploadImage('uploads/wedding/')) {
+                    echo json_encode(true);
+                }
+            }
+            \Yii::$app->end();
+            $this->refresh();
+            $model = new Image();
+        }
+
+        return $this->render('wedding', compact('model'));
+    }
+
     public function actionDelete()
     {
         if (\Yii::$app->request->isPost) {
