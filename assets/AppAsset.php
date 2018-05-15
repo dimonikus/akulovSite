@@ -19,8 +19,11 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/nanogallery2.woff.min.css',
+        'css/nanogallery2.min.css',
     ];
     public $js = [
+        'js/jquery.nanogallery2.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
