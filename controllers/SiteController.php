@@ -95,12 +95,11 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
+        if (!$model = TextPage::findOne(['page_name' => 'contact'])) {
+            $model = new TextPage();
+            $model->ru = '<p>Страница находится в стадии разработки!</p>';
         }
+
         return $this->render('contact', [
             'model' => $model,
         ]);

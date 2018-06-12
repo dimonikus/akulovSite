@@ -81,11 +81,26 @@ class ContentController extends \yii\web\Controller
         \Yii::$app->end();
     }
 
-    public function actionAbout()
+//    public function actionAbout()
+//    {
+//        if (!$model = TextPage::findOne(['page_name' => 'about'])) {
+//            $model = new TextPage();
+//            $model->page_name = 'about';
+//        }
+//        if (\Yii::$app->request->isPost && $model->load(\Yii::$app->request->post())) {
+//            if ($model->save()) {
+//                \Yii::$app->session->setFlash('success', 'Текстовая страница успешно сохранена');
+//            }
+//        }
+//
+//        return $this->render('about', compact('model'));
+//    }
+
+    public function actionTextPage($pageName)
     {
-        if (!$model = TextPage::findOne(['page_name' => 'about'])) {
+        if (!$model = TextPage::findOne(['page_name' => $pageName])) {
             $model = new TextPage();
-            $model->page_name = 'about';
+            $model->page_name = $pageName;
         }
         if (\Yii::$app->request->isPost && $model->load(\Yii::$app->request->post())) {
             if ($model->save()) {
@@ -93,6 +108,6 @@ class ContentController extends \yii\web\Controller
             }
         }
 
-        return $this->render('about', compact('model'));
+        return $this->render('text_page', compact('model'));
     }
 }
