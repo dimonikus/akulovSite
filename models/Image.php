@@ -110,6 +110,9 @@ class Image extends \yii\db\ActiveRecord
     public static function deleteImage($id)
     {
         if ($img = Image::find()->where(['id' => $id])->one()) {
+            if (file_exists(Yii::getAlias('@root') . '/' . $img->url . 'th_' . $img->name)) {
+                unlink (Yii::getAlias('@root') . '/' . $img->url . 'th_' . $img->name);
+            }
             unlink (Yii::getAlias('@root') . '/' . $img->url . $img->name);
             $img->delete();
 

@@ -11,8 +11,8 @@ $size = 'width="280" height="280"';
 <div data-nanogallery2>
 
 <?php foreach ($images as $image) { ?>
-    <a href="/<?= $image->url ?><?= $image->name ?>" data-ngThumb="/<?= $image->url ?><?= $image->name ?>"></a>
-
-<!--    <img src="/--><?//= $image->url ?><!----><?//= $image->name ?><!--" class="img-thumbnail" alt="Cinque Terre" --><?//= $size ?><!-->
+    <a href="/<?= $image->url ?><?= $image->name ?>"
+       data-ngThumb="/<?= $image->url ?><?= 'th_' . $image->name ?>">
+    </a>
 <?php } ?>
 </div>
