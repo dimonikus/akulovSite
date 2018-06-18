@@ -4,12 +4,13 @@ use yii\web\JsExpression;
 
 /* @var $this yii\web\View */
 /* @var $items array */
+/* @var $text \app\models\TextPage */
 
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
-    <div class="" style="text-align: center;">
+    <div class="text-center">
         <img src="/img/logo.png">
 
         <?php
@@ -41,4 +42,11 @@ $this->title = 'My Yii Application';
         ?>
     </div>
 
+    <div>
+        <?php
+        if (!empty($text)) {
+            echo $text->ru;
+        }
+        ?>
+    </div>
 </div>

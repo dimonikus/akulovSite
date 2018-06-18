@@ -64,8 +64,9 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $items = Image::getSliderImages();
+        $text = TextPage::findOne(['page_name' => 'main']);
 
-        return $this->render('index', compact('items'));
+        return $this->render('index', compact('items', 'text'));
     }
 
     /**
@@ -95,12 +96,11 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
+        if (!$model = TextPage::findOne(['page_name' => 'contact'])) {
+            $model = new TextPage();
+            $model->ru = '<p>Страница находится в стадии разработки!</p>';
         }
+
         return $this->render('contact', [
             'model' => $model,
         ]);

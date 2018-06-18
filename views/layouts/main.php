@@ -38,6 +38,14 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => Yii::t('menu', 'Home'), 'url' => ['/site/index']],
+            [
+                'label' => Yii::t('menu', 'Gallery'),
+                'items' => [
+                    ['label' => Yii::t('menu', 'Wedding'), 'url' => ['/gallery/wedding']],
+//                    '<li class="divider"></li>',
+//                    ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
+                ],
+            ],
             ['label' => Yii::t('menu', 'About'), 'url' => ['/site/about']],
             ['label' => Yii::t('menu', 'Contact'), 'url' => ['/site/contact']],
         ],
@@ -55,9 +63,9 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Akulov <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+<!--        <p class="pull-right">тел. 097-919-04-06 или 093-649-649-9</p>-->
     </div>
 </footer>
 

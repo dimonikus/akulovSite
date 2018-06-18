@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "evgeniyrru/yii2-slick": "*",
         "kartik-v/yii2-widget-fileinput": "@dev",
-        "2amigos/yii2-tinymce-widget": "*"
+        "2amigos/yii2-tinymce-widget": "*",
+        "yiisoft/yii2-imagine": "^2.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

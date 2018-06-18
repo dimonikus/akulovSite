@@ -40,7 +40,10 @@ AppAsset::register($this);
                 'label' => 'Content',
                 'items' => [
                     ['label' => 'slider', 'url' => ['/admin/content/slider']],
-                    ['label' => 'about', 'url' => ['/admin/content/about']],
+                    ['label' => 'main', 'url' => ['/admin/content/text-page', 'pageName' => 'main']],
+                    ['label' => 'about', 'url' => ['/admin/content/text-page', 'pageName' => 'about']],
+                    ['label' => 'contact', 'url' => ['/admin/content/text-page', 'pageName' => 'contact']],
+                    ['label' => 'wedding', 'url' => ['/admin/content/wedding']],
 //                    '<li class="divider"></li>',
 //                    '<li class="dropdown-header">Dropdown Header</li>',
 //                    ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
