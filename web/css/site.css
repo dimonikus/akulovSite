@@ -113,3 +113,16 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.sitemap {
+    color: #3d70dc;
+}
+
+.sitemap ul li {
+    margin-left: 30px;
+}
+
+.sitemap a {
+    color: #3d70dc;
+    text-decoration: none;
+}

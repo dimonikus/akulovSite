@@ -1,2 +1,5 @@
 User-agent: *
 Disallow:
+
+Host: https://akulov.kiev.ua
+Sitemap: https://akulov.kiev.ua/sitemap.xml

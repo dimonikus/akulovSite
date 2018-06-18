@@ -120,4 +120,66 @@ class SiteController extends Controller
 
         return $this->render('about', compact('model'));
     }
+
+    public function actionSitemap()
+    {
+        $map = $serviceMap = [];
+        $portfolioMap[] = [
+            'label' => 'Свадьба',
+            'url' => \Yii::$app->urlManager->createUrl(['/gallery/wedding'])
+        ];
+        $map[] = [
+            'label' => 'Галерея',
+            'url' => '',
+            'level' => $portfolioMap,
+        ];
+        $map[] = [
+            'label' => 'О нас',
+            'url' => \Yii::$app->urlManager->createUrl(['/site/about']),
+        ];
+        $map[] = [
+            'label' => 'Контакты',
+            'url' => \Yii::$app->urlManager->createUrl(['/site/contact']),
+        ];
+
+        return $this->render('sitemap', ['map' => $map]);
+    }
+
+    public function actionSitemapXml()
+    {
+        $map[] = [
+            'loc' => \Yii::$app->urlManager->createAbsoluteUrl(['/gallery/wedding']),
+            'changefreq' => 'daily',
+            'priority' => '0.5'
+        ];
+        $map[] = [
+            'loc' => \Yii::$app->urlManager->createAbsoluteUrl(['/site/about']),
+            'changefreq' => 'daily',
+            'priority' => '0.5'
+        ];
+        $map[] = [
+            'loc' => \Yii::$app->urlManager->createAbsoluteUrl(['/site/contact']),
+            'changefreq' => 'daily',
+            'priority' => '0.5'
+        ];
+
+        $dom = new \DOMDocument('1.0', 'utf-8');
+        $urlset = $dom->createElement('urlset');
+        $urlset->setAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+        foreach ($map as $item) {
+            $url = $dom->createElement('url');
+            foreach ($item as $key => $value) {
+                $elem = $dom->createElement($key);
+                $elem->appendChild($dom->createTextNode($value));
+                $url->appendChild($elem);
+            }
+            $urlset->appendChild($url);
+        }
+        $dom->appendChild($urlset);
+        $xml = $dom->saveXML();
+        file_put_contents('sitemap.xml', $xml);
+
+        header("Content-type: text/xml");
+        echo $xml;
+    }
 }
