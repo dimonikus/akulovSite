@@ -40,6 +40,7 @@ AppAsset::register($this);
                 'label' => 'Content',
                 'items' => [
                     ['label' => 'slider', 'url' => ['/admin/content/slider']],
+                    ['label' => 'main', 'url' => ['/admin/content/text-page', 'pageName' => 'main']],
                     ['label' => 'about', 'url' => ['/admin/content/text-page', 'pageName' => 'about']],
                     ['label' => 'contact', 'url' => ['/admin/content/text-page', 'pageName' => 'contact']],
                     ['label' => 'wedding', 'url' => ['/admin/content/wedding']],

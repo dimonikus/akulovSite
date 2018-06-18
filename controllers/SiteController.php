@@ -64,8 +64,9 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $items = Image::getSliderImages();
+        $text = TextPage::findOne(['page_name' => 'main']);
 
-        return $this->render('index', compact('items'));
+        return $this->render('index', compact('items', 'text'));
     }
 
     /**

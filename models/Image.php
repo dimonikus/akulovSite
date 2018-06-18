@@ -6,6 +6,8 @@ use Yii;
 use yii\helpers\Html;
 use yii\helpers\VarDumper;
 use yii\web\UploadedFile;
+use yii\imagine\Image as Img;
+use Imagine\Image\Box;
 
 /**
  * This is the model class for table "{{%image}}".
@@ -53,15 +55,24 @@ class Image extends \yii\db\ActiveRecord
         ];
     }
 
+    public function generateName()
+    {
+        return date('Ymd_', time()) . Yii::$app->security->generateRandomString(6);
+    }
+
     /**
      * @param $url
      * @return bool
      */
     public function uploadImage($url)
     {
-        $this->name = $this->imageFile->name;
+        $extension = $this->imageFile->extension;
+        $this->name = $this->generateName() . '.' . $extension;
         $this->url = $url;
-        if ($this->imageFile->saveAs($url . $this->imageFile->name) && $this->save(false)) {
+        if ($this->imageFile->saveAs($url . $this->name) && $this->save(false)) {
+            Img::thumbnail($url . $this->name, 500, 300)
+                ->resize(new Box(500,300))
+                ->save($url . 'th_' . $this->name, ['quality' => 70]);
 
             return true;
         }
