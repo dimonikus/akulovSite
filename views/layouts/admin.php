@@ -39,7 +39,7 @@ AppAsset::register($this);
             [
                 'label' => 'Seo',
                 'items' => [
-                    ['label' => 'main', 'url' => ['/admin/seo/index']],
+                    ['label' => 'pages meta info', 'url' => ['/admin/seo/index']],
 //                    ['label' => 'about', 'url' => ['/admin/content/text-page', 'pageName' => 'about']],
 //                    ['label' => 'contact', 'url' => ['/admin/content/text-page', 'pageName' => 'contact']],
 //                    ['label' => 'wedding', 'url' => ['/admin/content/wedding']],

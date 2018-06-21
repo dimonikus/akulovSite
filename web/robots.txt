@@ -1,5 +1,6 @@
 User-agent: *
-Disallow:
+Disallow: /admin/
+Disallow: /*admin
 
 Host: https://akulov.kiev.ua
 Sitemap: https://akulov.kiev.ua/sitemap.xml
