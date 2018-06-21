@@ -1,12 +1,9 @@
 <?php
 use evgeniyrru\yii2slick\Slick;
 use yii\web\JsExpression;
-
 /* @var $this yii\web\View */
 /* @var $items array */
 /* @var $text \app\models\TextPage */
-
-$this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 

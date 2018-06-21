@@ -8,11 +8,10 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = \Yii::t('menu', 'Contact');
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = \Yii::t('menu', 'Contact');
 ?>
 <div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= \Yii::t('menu', 'Contact') ?></h1>
 
     <div>
         <?= $model->ru ?>

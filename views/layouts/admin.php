@@ -37,6 +37,15 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             [
+                'label' => 'Seo',
+                'items' => [
+                    ['label' => 'main', 'url' => ['/admin/seo/index']],
+//                    ['label' => 'about', 'url' => ['/admin/content/text-page', 'pageName' => 'about']],
+//                    ['label' => 'contact', 'url' => ['/admin/content/text-page', 'pageName' => 'contact']],
+//                    ['label' => 'wedding', 'url' => ['/admin/content/wedding']],
+                ],
+            ],
+            [
                 'label' => 'Content',
                 'items' => [
                     ['label' => 'slider', 'url' => ['/admin/content/slider']],

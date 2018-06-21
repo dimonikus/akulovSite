@@ -2,11 +2,10 @@
 /* @var $this yii\web\View */
 /* @var $images app\models\Image */
 
-$this->title = Yii::t('menu', 'Wedding');
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = Yii::t('menu', 'Wedding');
 $size = 'width="280" height="280"';
 ?>
-<h1><?= $this->title ?></h1>
+<h1><?= Yii::t('menu', 'Wedding') ?></h1>
 
 <div data-nanogallery2>
 

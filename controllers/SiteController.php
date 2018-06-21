@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Image;
+use app\models\MetaTagManager;
 use app\models\TextPage;
 use Yii;
 use yii\filters\AccessControl;
@@ -65,6 +66,7 @@ class SiteController extends Controller
     {
         $items = Image::getSliderImages();
         $text = TextPage::findOne(['page_name' => 'main']);
+        MetaTagManager::registerMetaTags('main', ['canonical' => false]);
 
         return $this->render('index', compact('items', 'text'));
     }
@@ -100,6 +102,7 @@ class SiteController extends Controller
             $model = new TextPage();
             $model->ru = '<p>Страница находится в стадии разработки!</p>';
         }
+        MetaTagManager::registerMetaTags('contact');
 
         return $this->render('contact', [
             'model' => $model,
@@ -117,6 +120,7 @@ class SiteController extends Controller
             $model = new TextPage();
             $model->ru = '<p>Страница находится в стадии разработки!</p>';
         }
+        MetaTagManager::registerMetaTags('about');
 
         return $this->render('about', compact('model'));
     }
