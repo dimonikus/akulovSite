@@ -1,0 +1,46 @@
+AddDefaultCharset UTF-8
+AddCharset utf-8 *
+
+Options +FollowSymLinks
+
+RewriteEngine on
+RewriteBase /
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*[^/])$ $1/ [L,R=301]
+# otherwise forward it to index.php
+RewriteRule . index.php
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{HTTP:X-HTTPS} !1
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+#RewriteCond %{HTTP_HOST} ^www.akulov.kiev.ua$ [NC]
+#RewriteRule ^(.*)$ https://akulov.kiev.ua/$1 [R=301,L]
+
+#Redirect 301 / http://www.akulov.kiev.ua/web
+RewriteCond %{REQUEST_URI} ^(.*)//(.*)$
+RewriteRule . %1/%2 [R=301,L]
+
+
+#######
+#RewriteEngine on
+# if a directory or a file exists, use it directly
+#Options +FollowSymLinks
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-l
+#RewriteRule ^(.+) index.php [L]
+# otherwise forward it to index.php
+#RewriteRule . index.php
+
+#RewriteCond %{HTTP_HOST} ^www.lumixstudio.com.ua$ [NC]
+#RewriteRule ^(.*)$ https://lumixstudio.com.ua/$1 [R=301,L]
+
+#RewriteCond %{REQUEST_URI} ^(.*)//(.*)$
+#RewriteRule . %1/%2 [R=301,L]
+
